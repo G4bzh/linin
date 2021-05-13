@@ -1,24 +1,14 @@
-// Initialize button with user's preferred color
-let changeColor = document.getElementById("changeColor");
+// SEnd message to notify popup open event
+console.log("Popup Open. Send message to Background.js")
+chrome.runtime.sendMessage({popupOpen: true});
 
-chrome.storage.sync.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
+// Listen to messages
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+
+    if (request.popupMsg) {
+        // Fill textArea with message
+        let txtMessage = document.getElementById("txtMessage");
+        txtMessage.textContent = request.popupMsg;
+    }
+
 });
-
-// When the button is clicked, inject setPageBackgroundColor into current page
-changeColor.addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: setPageBackgroundColor,
-    });
-  });
-  
-  // The body of this function will be executed as a content script inside the
-  // current page
-  function setPageBackgroundColor() {
-    chrome.storage.sync.get("color", ({ color }) => {
-      document.body.style.backgroundColor = color;
-    });
-  }
