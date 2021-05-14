@@ -3,9 +3,9 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
 
         // Get URL message
-        if (request.getURL) {
-            // Send URL back
-            sendResponse({myURL: document.title});
+        if (request.getTitle) {
+            // Send Title back
+            sendResponse({myTitle: document.title});
         }
     }
   );
