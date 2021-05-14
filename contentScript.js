@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(
         // Get URL message
         if (request.getURL) {
             // Send URL back
-            sendResponse({myURL: window.location.href});
+            sendResponse({myURL: document.title});
         }
     }
   );
