@@ -27,6 +27,16 @@ Fondateur VeryFrog`
     return (isCEO ? strCEO : strCIO);
 }
 
+function copyMessage(){
+
+    // Copy to Clipboard
+    navigator.clipboard.writeText(document.getElementById("txtMessage").textContent).then(function() {
+        document.getElementById("lblCopy").textContent = "Message Copié !";
+        }, function() {
+        document.getElementById("lblCopy").textContent = "Echec de la copie du message !";
+        });
+}
+
 // Globals
 let lastName = "<LAST_NAME>"
 let firstName  = "<FIRST_NAME>";
@@ -37,13 +47,23 @@ radios.forEach(radio => radio.addEventListener('change', () => document.getEleme
 
 // Button Copy
 document.getElementById("btnCopy").addEventListener("click", function() {
+    copyMessage();
+});
 
-    // Copy to Clipboard
-    navigator.clipboard.writeText(document.getElementById("txtMessage").textContent).then(function() {
-        document.getElementById("lblCopy").textContent = "Message Copié !";
-      }, function() {
-        document.getElementById("lblCopy").textContent = "Echec de la copie du message !";
-      });
+
+// Button Copy
+document.getElementById("btnCopyConnect").addEventListener("click", function() {
+
+    copyMessage();
+
+    // Send messgae to Active Tab 
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+
+        // Send getButton to Active Tab
+        console.log("Send getButton message");
+        chrome.tabs.sendMessage(tabs[0].id, {getButton: true});
+
+    });
 
 });
 
