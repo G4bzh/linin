@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="popup.css">
   </head>
   <body>
     <p>Choisir une typologie d'acteur:</p>
 
     <div>
-      <input type="radio" id="dirigeant" name="typologie" value="dirigeant" checked>
-      <label for="huey">Huey</label>
+      <input type="radio" id="rCEO" name="type" value="dirigeant" checked>
+      <label for="rCEO">CEO</label>
     </div>
     
     <div>
-      <input type="radio" id="dsi" name="typologie" value="DSI">
-      <label for="dewey">Dewey</label>
+      <input type="radio" id="rCIO" name="type" value="DSI">
+      <label for="rCIO">DSI</label>
     </div>
 
     <div>   
@@ -22,6 +23,10 @@
           <label id=lblName></label>
         </p>
         <textarea id="txtMessage"></textarea>
+    </div>
+
+    <div>
+      <input type="button" value="Copier">
     </div>
 
     <script src="popup.js"></script>
