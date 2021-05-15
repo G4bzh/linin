@@ -1,3 +1,7 @@
+// Send message to notify popup open event
+console.log("Popup Open. Send message to Background.js")
+chrome.runtime.sendMessage({popupOpen: true});
+
 // Constants
 const re_name = /^(?:\(\d{1,}\)\s)?([\w\-]+)\s(.+)\s\|\sLinkedIn.*$/
 
@@ -31,9 +35,18 @@ let firstName  = "<FIRST_NAME>";
 let radios = document.querySelectorAll('input[type=radio][name="type"]');
 radios.forEach(radio => radio.addEventListener('change', () => document.getElementById("txtMessage").textContent = tmplMessage(firstName, document.getElementById("rCEO").checked) ));
 
-// Send message to notify popup open event
-console.log("Popup Open. Send message to Background.js")
-chrome.runtime.sendMessage({popupOpen: true});
+// Button Copy
+document.getElementById("btnCopy").addEventListener("click", function() {
+
+    // Copy to Clipboard
+    navigator.clipboard.writeText(document.getElementById("txtMessage").textContent).then(function() {
+        document.getElementById("lblCopy").textContent = "Message Copié !";
+      }, function() {
+        document.getElementById("lblCopy").textContent = "Echec de la copie du message !";
+      });
+
+});
+
 
 // Listen to messages
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
