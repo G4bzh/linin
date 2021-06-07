@@ -3,7 +3,8 @@ console.log("Popup Open. Send message to Background.js")
 chrome.runtime.sendMessage({popupOpen: true});
 
 // Constants
-const re_name = /^(?:\(\d{1,}\)\s)?([\w\-]+)\s(.+)\s\|\sLinkedIn.*$/
+//const re_name = /^(?:\(\d{1,}\)\s)?([\w\-]+)\s(.+)\s\|\sLinkedIn.*$/
+const re_name = /^(?:\(\d{1,}\)\s)?([a-zA-ZZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\-]+)\s(.+)\s\|\sLinkedIn.*$/
 
 
 // Functions

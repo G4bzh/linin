@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
         // Get Button message
         if (request.getButton) {
             // Get first Connect button
-            let connect = document.querySelector('button[type=button].pv-s-profile-actions--connect');;
+            let connect = document.querySelector('button[type=button].pvs-profile-actions__action');;
             if (connect) {
                 connect.click();
             }
